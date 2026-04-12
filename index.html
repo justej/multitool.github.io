@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MULTITOOL</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="crt-screen">
+    <header class="crt-header">
+      <h1 id="tool-name">Keyboard Layout Converter</h1>
+      <p id="tool-description">Convert text between QWERTY and ЙЦУКЕН keyboard layouts</p>
+    </header>
+
+    <main class="crt-main">
+      <textarea id="field-left" aria-label="QWERTY input" placeholder="Type or paste QWERTY text here..." spellcheck="false"></textarea>
+
+      <div class="actions">
+        <button type="button" class="action-btn" data-action="left-to-right">QWERTY → ЙЦУКЕН</button>
+        <button type="button" class="action-btn" data-action="right-to-left">ЙЦУКЕН → QWERTY</button>
+        <p id="error-msg" class="error-msg" role="alert" aria-live="polite"></p>
+        <fieldset class="layout-toggle">
+          <legend class="sr-only">Layout variant</legend>
+          <label><input type="radio" name="layout-variant" value="windows" checked> <span class="radio-display">(*)</span> Windows</label>
+          <label><input type="radio" name="layout-variant" value="macos"> <span class="radio-display">( )</span> macOS</label>
+        </fieldset>
+      </div>
+
+      <textarea id="field-right" aria-label="ЙЦУКЕН input" placeholder="Type or paste ЙЦУКЕН text here..." spellcheck="false"></textarea>
+    </main>
+
+    <hr class="crt-separator">
+
+    <nav class="tool-selector" role="navigation" aria-label="Tool selector">
+      <a href="#" class="tool-link active" data-tool="keyboard">Keyboard Layout</a>
+      <span class="tool-separator">│</span>
+      <span class="tool-link disabled" data-tool="base64">Base64</span>
+      <span class="tool-separator">│</span>
+      <span class="tool-link disabled" data-tool="url">URL Encode</span>
+    </nav>
+  </div>
+</body>
+</html>
