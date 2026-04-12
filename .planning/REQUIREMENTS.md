@@ -15,15 +15,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Base64 Encoding
 
-- [ ] **B64-01**: User can encode arbitrary text (including Cyrillic and other non-ASCII) to Base64
-- [ ] **B64-02**: User can decode valid Base64 back to readable text (including non-ASCII content)
-- [ ] **B64-03**: User sees a clear error message when attempting to decode invalid Base64 input
+- [x] **B64-01**: User can encode arbitrary text (including Cyrillic and other non-ASCII) to Base64
+- [x] **B64-02**: User can decode valid Base64 back to readable text (including non-ASCII content)
+- [x] **B64-03**: User sees a clear error message when attempting to decode invalid Base64 input
 
 ### URL Percent Encoding
 
-- [ ] **URL-01**: User can percent-encode text (including Cyrillic and special characters) for use in URLs
-- [ ] **URL-02**: User can decode percent-encoded text back to readable form
-- [ ] **URL-03**: User sees a clear error message when attempting to decode malformed percent-encoded input (e.g., bare `%`, truncated sequences)
+- [x] **URL-01**: User can percent-encode text (including Cyrillic and special characters) for use in URLs
+- [x] **URL-02**: User can decode percent-encoded text back to readable form
+- [x] **URL-03**: User sees a clear error message when attempting to decode malformed percent-encoded input (e.g., bare `%`, truncated sequences)
 
 ### UI Shell
 
@@ -90,12 +90,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LAYOUT-01 | Phase 1 | Complete |
 | LAYOUT-02 | Phase 1 | Complete |
 | LAYOUT-03 | Phase 1 | Complete |
-| B64-01 | Phase 2 | Pending |
-| B64-02 | Phase 2 | Pending |
-| B64-03 | Phase 2 | Pending |
-| URL-01 | Phase 2 | Pending |
-| URL-02 | Phase 2 | Pending |
-| URL-03 | Phase 2 | Pending |
+| B64-01 | Phase 2 | Complete |
+| B64-02 | Phase 2 | Complete |
+| B64-03 | Phase 2 | Complete |
+| URL-01 | Phase 2 | Complete |
+| URL-02 | Phase 2 | Complete |
+| URL-03 | Phase 2 | Complete |
 | UI-01 | Phase 1 | Complete |
 | UI-02 | Phase 1 | Complete |
 | UI-03 | Phase 3 | Pending |

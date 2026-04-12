@@ -45,7 +45,7 @@ Plans:
   3. User sees a clear, inline error message when attempting to decode invalid Base64 or malformed percent-encoded input
 **Plans:** 2 plans
 Plans:
-- [ ] 02-01-PLAN.md — Base64 & URL converter modules + error CSS
+- [x] 02-01-PLAN.md — Base64 & URL converter modules + error CSS
 - [ ] 02-02-PLAN.md — Registry wiring, HTML nav, error display, end-to-end verification
 
 ### Phase 3: Utility & Polish
