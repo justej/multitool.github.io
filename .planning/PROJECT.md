@@ -47,6 +47,7 @@ Instant, no-fuss text conversion between keyboard layouts and common encodings i
 ## Constraints
 
 - **Tech stack**: Vanilla HTML/CSS/JS only — no frameworks, no transpilation, no bundlers
+- **Code structure**: Each tool in its own JS file (ES modules). No spaghetti — clean separation between UI shell, tool registry, and individual converter logic.
 - **Deployment**: Must work as static files — no server-side logic
 - **Browser support**: Modern evergreen browsers (Chrome, Firefox, Safari, Edge)
 
@@ -55,6 +56,7 @@ Instant, no-fuss text conversion between keyboard layouts and common encodings i
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
 | Vanilla JS, no framework | Scope is small; a framework adds unnecessary complexity | — Pending |
+| One JS file per tool (ES modules) | Readability, debuggability, no spaghetti — each converter is self-contained | — Pending |
 | Button-click conversion, not live | User explicitly requested; simpler UX for copy-paste workflows | — Pending |
 | CRT retro aesthetic | User preference — green phosphor on dark, old terminal vibe | — Pending |
 | Text links for tool selector | Minimalist bottom toolbar matching retro aesthetic | — Pending |
