@@ -1,0 +1,313 @@
+/* ========================================
+   MULTITOOL — CRT Green-Phosphor Theme
+   ======================================== */
+
+/* --- Custom Properties --- */
+:root {
+  --crt-bg: #0a0a0a;
+  --crt-bg-secondary: #0d1a0d;
+  --crt-green: #00ff41;
+  --crt-green-dim: #00cc33;
+  --crt-green-glow: rgba(0, 255, 65, 0.4);
+  --crt-border: rgba(0, 255, 65, 0.5);
+  --crt-error: #ff6b6b;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+}
+
+/* --- @font-face --- */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Body --- */
+body {
+  background: var(--crt-bg);
+  color: var(--crt-green);
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl);
+}
+
+/* --- Screen Flicker --- */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.97; }
+}
+
+/* --- CRT Screen Container --- */
+.crt-screen {
+  max-width: 1200px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-lg);
+  background: var(--crt-bg);
+  animation: flicker 4s ease-in-out infinite;
+}
+
+/* --- Scanline Overlay --- */
+.crt-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+/* --- Header --- */
+.crt-header {
+  background: var(--crt-bg-secondary);
+  padding: var(--space-lg);
+}
+
+#tool-name {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 0 4px var(--crt-green), 0 0 8px var(--crt-green), 0 0 16px var(--crt-green-glow);
+}
+
+#tool-description {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--crt-green-dim);
+  margin-top: var(--space-xs);
+}
+
+/* --- Main Panel --- */
+.crt-main {
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  min-height: 400px;
+}
+
+/* --- Textareas --- */
+#field-left,
+#field-right {
+  flex: 1;
+  background: var(--crt-bg);
+  color: var(--crt-green);
+  border: 1px solid var(--crt-border);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: var(--space-md);
+  resize: none;
+  min-height: 300px;
+}
+
+#field-left::placeholder,
+#field-right::placeholder {
+  color: var(--crt-green-dim);
+}
+
+#field-left:focus,
+#field-right:focus {
+  border-color: var(--crt-green);
+  outline: none;
+}
+
+#field-left:hover,
+#field-right:hover {
+  border-color: var(--crt-green);
+}
+
+/* --- Actions Column --- */
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 200px;
+}
+
+/* --- Error Message --- */
+.error-msg {
+  color: var(--crt-error);
+  font-size: 14px;
+  text-align: center;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--crt-error);
+  background: rgba(255, 107, 107, 0.08);
+  max-width: 200px;
+  word-wrap: break-word;
+  display: none;
+}
+
+.error-msg.visible {
+  display: block;
+}
+
+/* --- Action Buttons --- */
+.action-btn {
+  background: transparent;
+  color: var(--crt-green);
+  border: 1px solid var(--crt-green);
+  font-family: inherit;
+  font-size: 16px;
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.1s;
+}
+
+.action-btn:hover {
+  text-shadow: 0 0 4px var(--crt-green), 0 0 8px var(--crt-green);
+}
+
+.action-btn:active {
+  background: var(--crt-green);
+  color: var(--crt-bg);
+}
+
+.action-btn:focus {
+  outline: 2px dashed var(--crt-green);
+  outline-offset: 2px;
+}
+
+/* --- Layout Toggle --- */
+.layout-toggle {
+  border: none;
+  margin-top: var(--space-md);
+  font-size: 14px;
+  color: var(--crt-green);
+}
+
+.layout-toggle label {
+  cursor: pointer;
+  display: block;
+  padding: var(--space-xs) 0;
+}
+
+/* Hide native radio inputs */
+.layout-toggle input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.layout-toggle input[type="radio"]:focus + .radio-display {
+  outline: 2px dashed var(--crt-green);
+  outline-offset: 2px;
+}
+
+/* --- Screen Reader Only --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* --- Separator --- */
+.crt-separator {
+  border: none;
+  border-top: 1px solid var(--crt-border);
+  margin: var(--space-lg) 0;
+}
+
+/* --- Tool Selector --- */
+.tool-selector {
+  background: var(--crt-bg-secondary);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.tool-link {
+  color: var(--crt-green);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.tool-link:hover {
+  text-decoration: underline;
+}
+
+.tool-link:focus {
+  outline: 2px dashed var(--crt-green);
+  outline-offset: 2px;
+}
+
+.tool-link.active {
+  background: var(--crt-green);
+  color: var(--crt-bg);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.tool-link.disabled {
+  color: var(--crt-green-dim);
+  cursor: default;
+}
+
+.tool-link.disabled:hover {
+  text-decoration: none;
+}
+
+.tool-separator {
+  color: var(--crt-border);
+  margin: 0 var(--space-xs);
+}
+
+/* --- prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .crt-screen {
+    animation: none;
+  }
+
+  .crt-screen::after {
+    display: none;
+  }
+
+  #tool-name,
+  .action-btn:hover {
+    text-shadow: none;
+  }
+}
