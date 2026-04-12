@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head><title>Base64 Converter Tests</title></head>
+<body>
+<pre id="results"></pre>
+<script type="module">
+import { base64Encode, base64Decode } from './base64.js';
+
+const results = [];
+let passed = 0;
+let failed = 0;
+
+function assert(name, actual, expected) {
+  const pass = JSON.stringify(actual) === JSON.stringify(expected);
+  if (pass) passed++;
+  else failed++;
+  results.push(`${pass ? 'PASS' : 'FAIL'}: ${name}${pass ? '' : `\n  Expected: ${JSON.stringify(expected)}\n  Actual:   ${JSON.stringify(actual)}`}`);
+}
+
+// ASCII encode/decode
+assert('encode ASCII', base64Encode('Hello, World!'), 'SGVsbG8sIFdvcmxkIQ==');
+assert('decode ASCII', base64Decode('SGVsbG8sIFdvcmxkIQ=='), 'Hello, World!');
+
+// Cyrillic encode/decode (UTF-8 pipeline)
+assert('encode Cyrillic', base64Encode('привет'), '0L/RgNC40LLQtdGC');
+assert('decode Cyrillic', base64Decode('0L/RgNC40LLQtdGC'), 'привет');
+
+// Round-trip Cyrillic
+assert('round-trip Cyrillic', base64Decode(base64Encode('Привет, мир! 🌍')), 'Привет, мир! 🌍');
+
+// Empty string
+assert('encode empty', base64Encode(''), '');
+assert('decode empty', base64Decode(''), '');
+
+// Invalid Base64 returns error object
+const badResult = base64Decode('!!!not-valid-base64!!!');
+assert('invalid decode returns object', typeof badResult, 'object');
+assert('invalid decode has error key', typeof badResult.error, 'string');
+
+// Valid Base64 without padding
+assert('decode without padding', base64Decode('SGVsbG8'), 'Hello');
+
+// Success returns string type
+assert('encode returns string', typeof base64Encode('test'), 'string');
+
+// Round-trip ASCII
+assert('round-trip ASCII', base64Decode(base64Encode('Hello World')), 'Hello World');
+
+// Special chars
+assert('round-trip special chars', base64Decode(base64Encode('a=1&b=2&c=<>')), 'a=1&b=2&c=<>');
+
+// Summary
+results.push('');
+results.push(`TOTAL: ${passed + failed} tests — ${passed} passed, ${failed} failed`);
+
+document.getElementById('results').textContent = results.join('\n');
+</script>
+</body>
+</html>
