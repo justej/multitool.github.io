@@ -46,7 +46,7 @@ Plans:
 **Plans:** 2 plans
 Plans:
 - [x] 02-01-PLAN.md — Base64 & URL converter modules + error CSS
-- [ ] 02-02-PLAN.md — Registry wiring, HTML nav, error display, end-to-end verification
+- [x] 02-02-PLAN.md — Registry wiring, HTML nav, error display, end-to-end verification
 
 ### Phase 3: Utility & Polish
 **Goal**: Users have copy/clear convenience features and can use the tool comfortably on mobile screens
