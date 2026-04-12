@@ -35,6 +35,7 @@ function switchTool(toolId) {
   const tool = getToolById(toolId);
   if (!tool) return;
   currentTool = tool;
+  clearError();
   updateToolUI(tool);
   setActiveToolLink(toolId);
   setToolCookie(toolId);
