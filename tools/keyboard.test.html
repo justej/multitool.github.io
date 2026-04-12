@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head><title>Keyboard Converter Tests</title></head>
+<body>
+<pre id="results"></pre>
+<script type="module">
+import { qwertyToYcuken, ycukenToQwerty, WINDOWS_MAP, MACOS_MAP } from './keyboard.js';
+
+const results = [];
+let passed = 0;
+let failed = 0;
+
+function assert(name, actual, expected) {
+  const pass = actual === expected;
+  if (pass) passed++;
+  else failed++;
+  results.push(`${pass ? 'PASS' : 'FAIL'}: ${name}${pass ? '' : `\n  Expected: ${JSON.stringify(expected)}\n  Actual:   ${JSON.stringify(actual)}`}`);
+}
+
+// Basic letter conversion
+assert('basic qwerty→ycuken', qwertyToYcuken('ghbdtn'), 'привет');
+assert('basic ycuken→qwerty', ycukenToQwerty('привет'), 'ghbdtn');
+
+// Uppercase
+assert('uppercase qwerty→ycuken', qwertyToYcuken('GHBDTN'), 'ПРИВЕТ');
+assert('uppercase ycuken→qwerty', ycukenToQwerty('ПРИВЕТ'), 'GHBDTN');
+
+// Mixed case + punctuation
+assert('mixed + punct', qwertyToYcuken('Ghbdtn? Rfr ltkf?'), 'Привет, Как дела,');
+
+// Round-trip
+assert('round-trip letters', ycukenToQwerty(qwertyToYcuken('Hello World')), 'Hello World');
+assert('round-trip mixed', ycukenToQwerty(qwertyToYcuken('Test 123!')), 'Test 123!');
+
+// Digits pass through
+assert('digits pass through', qwertyToYcuken('123'), '123');
+
+// Ё mapping
+assert('ё mapping (backtick)', qwertyToYcuken('`'), 'ё');
+assert('Ё mapping (tilde)', qwertyToYcuken('~'), 'Ё');
+
+// Empty string
+assert('empty string', qwertyToYcuken(''), '');
+
+// Emoji pass through
+assert('emoji pass through', qwertyToYcuken('🎉'), '🎉');
+
+// CJK pass through
+assert('CJK pass through', qwertyToYcuken('漢字'), '漢字');
+
+// Space pass through
+assert('space pass through', qwertyToYcuken(' '), ' ');
+
+// Punctuation mapping
+assert('@ → "', qwertyToYcuken('@'), '"');
+assert('# → №', qwertyToYcuken('#'), '№');
+assert('$ → ;', qwertyToYcuken('$'), ';');
+assert('^ → :', qwertyToYcuken('^'), ':');
+assert('& → ?', qwertyToYcuken('&'), '?');
+assert('; → ж', qwertyToYcuken(';'), 'ж');
+assert("' → э", qwertyToYcuken("'"), 'э');
+assert(', → б', qwertyToYcuken(','), 'б');
+assert('. → ю', qwertyToYcuken('.'), 'ю');
+assert('/ → .', qwertyToYcuken('/'), '.');
+assert('[ → х', qwertyToYcuken('['), 'х');
+assert('] → ъ', qwertyToYcuken(']'), 'ъ');
+
+// Shifted punctuation
+assert(': → Ж', qwertyToYcuken(':'), 'Ж');
+assert('" → Э', qwertyToYcuken('"'), 'Э');
+assert('< → Б', qwertyToYcuken('<'), 'Б');
+assert('> → Ю', qwertyToYcuken('>'), 'Ю');
+assert('? → ,', qwertyToYcuken('?'), ',');
+assert('{ → Х', qwertyToYcuken('{'), 'Х');
+assert('} → Ъ', qwertyToYcuken('}'), 'Ъ');
+assert('| → /', qwertyToYcuken('|'), '/');
+
+// WINDOWS_MAP has № (number sign)
+assert('WINDOWS_MAP has №', Object.values(WINDOWS_MAP).includes('№'), true);
+
+// Maps differ
+assert('maps differ', JSON.stringify(WINDOWS_MAP) !== JSON.stringify(MACOS_MAP), true);
+
+// macOS-specific tests
+assert('macOS: backtick → ]', qwertyToYcuken('`', 'macos'), ']');
+assert('macOS: tilde → [', qwertyToYcuken('~', 'macos'), '[');
+assert('macOS: backslash → ё', qwertyToYcuken('\\', 'macos'), 'ё');
+assert('macOS: pipe → Ё', qwertyToYcuken('|', 'macos'), 'Ё');
+assert('macOS: letters same', qwertyToYcuken('ghbdtn', 'macos'), 'привет');
+
+// Map size check (should have 60+ entries)
+assert('WINDOWS_MAP >= 60 entries', Object.keys(WINDOWS_MAP).length >= 60, true);
+assert('MACOS_MAP >= 60 entries', Object.keys(MACOS_MAP).length >= 60, true);
+
+// Summary
+results.push('');
+results.push(`TOTAL: ${passed + failed} tests — ${passed} passed, ${failed} failed`);
+
+document.getElementById('results').textContent = results.join('\n');
+</script>
+</body>
+</html>
