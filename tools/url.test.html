@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head><title>URL Percent Encoder Tests</title></head>
+<body>
+<pre id="results"></pre>
+<script type="module">
+import { urlEncode, urlDecode } from './url.js';
+
+const results = [];
+let passed = 0;
+let failed = 0;
+
+function assert(name, actual, expected) {
+  const pass = JSON.stringify(actual) === JSON.stringify(expected);
+  if (pass) passed++;
+  else failed++;
+  results.push(`${pass ? 'PASS' : 'FAIL'}: ${name}${pass ? '' : `\n  Expected: ${JSON.stringify(expected)}\n  Actual:   ${JSON.stringify(actual)}`}`);
+}
+
+// Basic encode/decode
+assert('encode space', urlEncode('Hello World'), 'Hello%20World');
+assert('decode space', urlDecode('Hello%20World'), 'Hello World');
+
+// Cyrillic
+assert('encode Cyrillic', urlEncode('привет'), '%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82');
+assert('decode Cyrillic', urlDecode('%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82'), 'привет');
+
+// Empty string
+assert('encode empty', urlEncode(''), '');
+assert('decode empty', urlDecode(''), '');
+
+// Special characters
+assert('encode special chars', urlEncode('a=1&b=2'), 'a%3D1%26b%3D2');
+
+// Round-trip
+assert('round-trip ASCII', urlDecode(urlEncode('Hello World!')), 'Hello World!');
+assert('round-trip Cyrillic', urlDecode(urlEncode('Привет, мир!')), 'Привет, мир!');
+
+// Error: bare percent sign
+const badPercent = urlDecode('%');
+assert('bare % returns object', typeof badPercent, 'object');
+assert('bare % has error key', typeof badPercent.error, 'string');
+
+// Error: invalid hex after percent
+const badHex = urlDecode('%ZZ');
+assert('%ZZ returns object', typeof badHex, 'object');
+assert('%ZZ has error key', typeof badHex.error, 'string');
+
+// Error: truncated sequence
+const truncated = urlDecode('%E0%A');
+assert('truncated returns object', typeof truncated, 'object');
+assert('truncated has error key', typeof truncated.error, 'string');
+
+// Success returns string
+assert('encode returns string', typeof urlEncode('test'), 'string');
+
+// Summary
+results.push('');
+results.push(`TOTAL: ${passed + failed} tests — ${passed} passed, ${failed} failed`);
+
+document.getElementById('results').textContent = results.join('\n');
+</script>
+</body>
+</html>
