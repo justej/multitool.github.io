@@ -120,6 +120,14 @@ body {
   min-height: 400px;
 }
 
+/* --- Field Wrappers --- */
+.field-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
 /* --- Textareas --- */
 #field-left,
 #field-right {
@@ -201,6 +209,34 @@ body {
 }
 
 .action-btn:focus {
+  outline: 2px dashed var(--crt-green);
+  outline-offset: 2px;
+}
+
+/* --- Utility Buttons --- */
+.util-btn {
+  background: transparent;
+  color: var(--crt-green);
+  border: 1px solid var(--crt-green);
+  font-family: inherit;
+  font-size: 14px;
+  padding: var(--space-xs) var(--space-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.1s;
+  align-self: flex-start;
+}
+
+.util-btn:hover {
+  text-shadow: 0 0 4px var(--crt-green), 0 0 8px var(--crt-green);
+}
+
+.util-btn:active {
+  background: var(--crt-green);
+  color: var(--crt-bg);
+}
+
+.util-btn:focus {
   outline: 2px dashed var(--crt-green);
   outline-offset: 2px;
 }
@@ -296,6 +332,38 @@ body {
   margin: 0 var(--space-xs);
 }
 
+/* --- Responsive: Mobile (<= 600px) --- */
+@media (max-width: 600px) {
+  body {
+    padding: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .crt-main {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .field-wrap {
+    width: 100%;
+  }
+
+  #field-left,
+  #field-right {
+    min-height: 160px;
+    width: 100%;
+  }
+
+  .actions {
+    order: 3;
+    min-width: 0;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 /* --- prefers-reduced-motion --- */
 @media (prefers-reduced-motion: reduce) {
   .crt-screen {
@@ -307,7 +375,8 @@ body {
   }
 
   #tool-name,
-  .action-btn:hover {
+  .action-btn:hover,
+  .util-btn:hover {
     text-shadow: none;
   }
 }

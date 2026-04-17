@@ -15,7 +15,10 @@
     </header>
 
     <main class="crt-main">
-      <textarea id="field-left" aria-label="QWERTY input" placeholder="Type or paste QWERTY text here..." spellcheck="false"></textarea>
+      <div class="field-wrap">
+        <textarea id="field-left" aria-label="QWERTY input" placeholder="Type or paste QWERTY text here..." spellcheck="false"></textarea>
+        <button type="button" class="util-btn" id="btn-copy-left">[COPY]</button>
+      </div>
 
       <div class="actions">
         <button type="button" class="action-btn" data-action="left-to-right">QWERTY → ЙЦУКЕН</button>
@@ -26,9 +29,13 @@
           <label><input type="radio" name="layout-variant" value="windows" checked> <span class="radio-display">(*)</span> Windows</label>
           <label><input type="radio" name="layout-variant" value="macos"> <span class="radio-display">( )</span> macOS</label>
         </fieldset>
+        <button type="button" class="util-btn" id="btn-clear">[CLEAR]</button>
       </div>
 
-      <textarea id="field-right" aria-label="ЙЦУКЕН input" placeholder="Type or paste ЙЦУКЕН text here..." spellcheck="false"></textarea>
+      <div class="field-wrap">
+        <textarea id="field-right" aria-label="ЙЦУКЕН input" placeholder="Type or paste ЙЦУКЕН text here..." spellcheck="false"></textarea>
+        <button type="button" class="util-btn" id="btn-copy-right">[COPY]</button>
+      </div>
     </main>
 
     <hr class="crt-separator">
