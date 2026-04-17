@@ -12,7 +12,7 @@
  */
 
 import { tools, getToolById } from './registry.js';
-import { updateToolUI, setActiveToolLink, updateRadioDisplay, showError, clearError } from './ui.js';
+import { updateToolUI, setActiveToolLink, updateRadioDisplay, showError, clearError, flashCopyButton } from './ui.js';
 
 // --- State ---
 let currentTool = null;
@@ -91,6 +91,29 @@ document.querySelector('.tool-selector').addEventListener('click', (e) => {
 });
 
 // --- Initialization ---
+
+// Copy left (UI-03)
+document.getElementById('btn-copy-left').addEventListener('click', () => {
+  const text = document.getElementById('field-left').value;
+  navigator.clipboard.writeText(text).then(() => {
+    flashCopyButton(document.getElementById('btn-copy-left'));
+  }).catch(() => { /* D-04: silent failure */ });
+});
+
+// Copy right (UI-03)
+document.getElementById('btn-copy-right').addEventListener('click', () => {
+  const text = document.getElementById('field-right').value;
+  navigator.clipboard.writeText(text).then(() => {
+    flashCopyButton(document.getElementById('btn-copy-right'));
+  }).catch(() => { /* D-04: silent failure */ });
+});
+
+// Clear both fields (UI-04)
+document.getElementById('btn-clear').addEventListener('click', () => {
+  document.getElementById('field-left').value = '';
+  document.getElementById('field-right').value = '';
+  clearError();
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   // Restore last tool from cookie, or default to first tool

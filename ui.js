@@ -88,3 +88,16 @@ export function clearError() {
     el.classList.remove('visible');
   }
 }
+
+/**
+ * Flash a copy button with "[COPIED!]" feedback for 1500ms, then revert.
+ * Silent — no error shown if clipboard API fails (D-04).
+ *
+ * @param {HTMLElement} btnEl - The [COPY] button element
+ */
+export function flashCopyButton(btnEl) {
+  btnEl.textContent = '[COPIED!]';
+  setTimeout(() => {
+    btnEl.textContent = '[COPY]';
+  }, 1500);
+}
