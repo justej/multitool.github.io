@@ -29,8 +29,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **UI-01**: Page displays two side-by-side editable text areas large enough for multi-paragraph text
 - [x] **UI-02**: Action buttons between/near the text areas change labels and behavior based on selected tool (e.g., "Encode"/"Decode" for Base64, "QWERTY→ЙЦУКЕН"/"ЙЦУКЕН→QWERTY" for layout converter)
-- [ ] **UI-03**: Each text area has a "Copy to clipboard" button that copies the field content and shows visual feedback (e.g., "Copied!" flash)
-- [ ] **UI-04**: A "Clear" button resets both text fields
+- [x] **UI-03**: Each text area has a "Copy to clipboard" button that copies the field content and shows visual feedback (e.g., "Copied!" flash)
+- [x] **UI-04**: A "Clear" button resets both text fields
 - [x] **UI-05**: Tool selector displayed as text links at the bottom of the page; clicking a link switches the active tool
 - [x] **UI-06**: Switching tools updates button labels, field placeholders, and conversion logic without page reload
 
@@ -44,7 +44,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **VIS-01**: Page uses a retro CRT green-phosphor-on-dark color scheme with monospace font
 - [x] **VIS-02**: Scanline overlay and text-shadow glow effects create authentic CRT terminal feel
 - [x] **VIS-03**: CRT animation effects respect `prefers-reduced-motion` (disable scanlines/glow/flicker for users who prefer reduced motion)
-- [ ] **VIS-04**: Layout is responsive — usable on mobile viewports (fields stack vertically on narrow screens)
+- [x] **VIS-04**: Layout is responsive — usable on mobile viewports (fields stack vertically on narrow screens)
 
 ### Trust & Deployment
 
@@ -98,8 +98,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | URL-03 | Phase 2 | Complete |
 | UI-01 | Phase 1 | Complete |
 | UI-02 | Phase 1 | Complete |
-| UI-03 | Phase 3 | Pending |
-| UI-04 | Phase 3 | Pending |
+| UI-03 | Phase 3 | Complete |
+| UI-04 | Phase 3 | Complete |
 | UI-05 | Phase 1 | Complete |
 | UI-06 | Phase 1 | Complete |
 | CODE-01 | Phase 1 | Complete |
@@ -107,7 +107,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | VIS-01 | Phase 1 | Complete |
 | VIS-02 | Phase 1 | Complete |
 | VIS-03 | Phase 1 | Complete |
-| VIS-04 | Phase 3 | Pending |
+| VIS-04 | Phase 3 | Complete |
 | TRUST-01 | Phase 1 | Complete |
 | TRUST-02 | Phase 1 | Complete |
 | TRUST-03 | Phase 1 | Complete |

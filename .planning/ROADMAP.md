@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Shell & Keyboard Converter** - Working CRT-styled app with two-panel layout, tool switching, and QWERTY↔ЙЦУКЕН conversion
 - [ ] **Phase 2: Encoding Tools** - Base64 and URL percent encoding/decoding with error handling
-- [ ] **Phase 3: Utility & Polish** - Copy-to-clipboard, clear buttons, and responsive mobile layout
+- [x] **Phase 3: Utility & Polish** - Copy-to-clipboard, clear buttons, and responsive mobile layout (completed 2026-04-18)
 
 ## Phase Details
 
@@ -56,7 +56,9 @@ Plans:
   1. User can click a "Copy to clipboard" button on each text field and sees visual feedback confirming the copy
   2. User can click "Clear" to reset both text fields
   3. Layout is responsive — text fields stack vertically on narrow/mobile viewports and remain usable
-**Plans**: TBD
+**Plans:** 1/1 plans complete
+Plans:
+- [x] 03-01-PLAN.md — Copy/clear buttons + responsive mobile layout
 **UI hint**: yes
 
 ## Progress
@@ -68,4 +70,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Shell & Keyboard Converter | 0/3 | Planned | - |
 | 2. Encoding Tools | 0/2 | Planned | - |
-| 3. Utility & Polish | 0/? | Not started | - |
+| 3. Utility & Polish | 1/1 | Complete   | 2026-04-18 |
