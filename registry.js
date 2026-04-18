@@ -22,8 +22,8 @@ export const tools = [
     rightAriaLabel: 'ЙЦУКЕН input',
     hasVariantToggle: true,
     actions: [
-      { label: 'QWERTY → ЙЦУКЕН', fn: qwertyToYcuken, direction: 'left-to-right' },
-      { label: 'ЙЦУКЕН → QWERTY', fn: ycukenToQwerty, direction: 'right-to-left' },
+      { label: '→ ЙЦУКЕН', fn: qwertyToYcuken, direction: 'left-to-right' },
+      { label: 'QWERTY ←', fn: ycukenToQwerty, direction: 'right-to-left' },
     ],
   },
   {
