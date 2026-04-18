@@ -128,6 +128,11 @@ body {
   gap: var(--space-sm);
 }
 
+.field-btns {
+  display: flex;
+  gap: var(--space-sm);
+}
+
 /* --- Textareas --- */
 #field-left,
 #field-right {

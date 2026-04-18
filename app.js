@@ -108,9 +108,14 @@ document.getElementById('btn-copy-right').addEventListener('click', () => {
   }).catch(() => { /* D-04: silent failure */ });
 });
 
-// Clear both fields (UI-04)
-document.getElementById('btn-clear').addEventListener('click', () => {
+// Clear left field (UI-04)
+document.getElementById('btn-clear-left').addEventListener('click', () => {
   document.getElementById('field-left').value = '';
+  clearError();
+});
+
+// Clear right field (UI-04)
+document.getElementById('btn-clear-right').addEventListener('click', () => {
   document.getElementById('field-right').value = '';
   clearError();
 });
