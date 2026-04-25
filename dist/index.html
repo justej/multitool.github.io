@@ -633,6 +633,38 @@ const REVERSE_WINDOWS = buildReverseMap(WINDOWS_MAP);
 const REVERSE_MACOS = buildReverseMap(MACOS_MAP);
 
 // ============================================================
+// Ukrainian layout overrides (ЙЦУКЕН → QWERTY, reverse direction only)
+// ============================================================
+// Ukrainian keyboard layout shares physical key positions with Russian ЙЦУКЕН
+// but substitutes four letters. These entries are added to the reverse maps so
+// ycukenToQwerty handles Ukrainian input correctly. The forward maps are NOT
+// modified — QWERTY → Cyrillic works correctly via OS layout selection.
+//
+// Physical key position → Ukrainian letter (vs Russian letter at same position):
+//   s key → і/І  (Russian: ы/Ы)
+//   ] key → ї/Ї  (Russian: ъ/Ъ)
+//   ' key → є/Є  (Russian: э/Э)
+//   ` key → ґ/Ґ  (Russian: ё/Ё)
+
+REVERSE_WINDOWS['і'] = 's';
+REVERSE_WINDOWS['І'] = 'S';
+REVERSE_WINDOWS['ї'] = ']';
+REVERSE_WINDOWS['Ї'] = '}';
+REVERSE_WINDOWS['є'] = "'";
+REVERSE_WINDOWS['Є'] = '"';
+REVERSE_WINDOWS['ґ'] = '`';
+REVERSE_WINDOWS['Ґ'] = '~';
+
+REVERSE_MACOS['і'] = 's';
+REVERSE_MACOS['І'] = 'S';
+REVERSE_MACOS['ї'] = ']';
+REVERSE_MACOS['Ї'] = '}';
+REVERSE_MACOS['є'] = "'";
+REVERSE_MACOS['Є'] = '"';
+REVERSE_MACOS['ґ'] = '`';
+REVERSE_MACOS['Ґ'] = '~';
+
+// ============================================================
 // Conversion functions
 // ============================================================
 
